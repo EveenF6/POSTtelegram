@@ -1,9 +1,9 @@
 name: Scheduled POST Request
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '0 */12 * * *'  # 每12小时运行一次
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
 
 jobs:
   send-request:
@@ -16,6 +16,9 @@ jobs:
         name: Set up Python
         with:
           python-version: '3.9'  # 确保版本正确
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
       - name: Run script
         run: python send_post.py
